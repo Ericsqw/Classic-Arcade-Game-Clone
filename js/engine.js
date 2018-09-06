@@ -183,18 +183,3 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
-
-    class Hero {
-      constructor() {
-        this.x = 0;
-        this.y = 0;
-        this.sprite = "images/char-boy.png";
-      }
-
-      //Position hero sprite based on the current coordinates
-      render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-      }
-    }
-
-    const player = new Hero();

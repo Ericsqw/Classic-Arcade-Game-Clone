@@ -44,3 +44,37 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+    class Hero {
+      constructor() {
+        this.x = 0;
+        this.y = 0;
+        this.sprite = "images/char-boy.png";
+      }
+
+      //Position hero sprite based on the current coordinates
+      render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+      }
+
+      //Coordinates x and y get updated if key input is made
+      handleInput(input) {
+        switch(input) {
+          case 'up':
+              this.y -= 20;
+              break;
+          case 'down':
+              this.y += 20;
+              break;
+          case 'left':
+              this.x -= 20;
+              break;
+          case 'right':
+              this.x += 20;
+              break;
+        }
+      }
+    }
+
+    const player = new Hero();
