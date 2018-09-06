@@ -48,9 +48,13 @@ document.addEventListener('keyup', function(e) {
 
     class Hero {
       constructor() {
-        this.x = 0;
-        this.y = 0;
         this.sprite = "images/char-boy.png";
+        this.stepX = 101;
+        this.stepY = 83;
+        this.startX = this.stepX * 2;
+        this.startY = (this.stepY * 5) - 15;
+        this.x = this.startX;
+        this.y = this.startY;
       }
 
       //Position hero sprite based on the current coordinates
@@ -62,19 +66,27 @@ document.addEventListener('keyup', function(e) {
       handleInput(input) {
         switch(input) {
           case 'up':
-              this.y -= 20;
+              if (this.y > this.stepY) {
+                this.y -= this.stepY;
+              }
               break;
           case 'down':
-              this.y += 20;
+              if (this.y < this.stepY * 4) {
+              this.y += this.stepY;
+              }
               break;
           case 'left':
-              this.x -= 20;
+              if (this.x > 0) {
+                  this.x -= this.stepX;
+              }
               break;
           case 'right':
-              this.x += 20;
+              if (this.x < this.stepX * 4) {
+                  this.x += this.stepX;
+              }
               break;
-        }
       }
     }
+  }
 
     const player = new Hero();
