@@ -44,7 +44,7 @@ var Engine = (function(global) {
     const replay = document.querySelector('.modal-button');
     replay.addEventListener('click', function() {
       modal.classList.toggle('hide');
-      player.reset();
+      player.restart();
       player.winning = false;
       win.requestAnimationFrame(main);
     });
@@ -198,4 +198,4 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
-    })(this);
+})(this);
