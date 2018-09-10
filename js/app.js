@@ -11,7 +11,7 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     this.stepX = 101;
     this.limit = this.stepX * 5;
-    this.restart = -this.stepX;
+    this.reset = -this.stepX;
 };
 
 // Update the enemy's position, required method for game
@@ -26,7 +26,7 @@ Enemy.prototype.update = function(dt) {
     }
     else {
       //reset bug position to 0
-      this.x = this.restart;
+      this.x = this.reset;
     }
 };
 
@@ -78,7 +78,7 @@ document.addEventListener('keyup', function(e) {
       }
 
       //Reset Hero
-      restart() {
+      reset() {
         this.x = this.startX;
         this.y = this.startY;
       }
@@ -87,7 +87,7 @@ document.addEventListener('keyup', function(e) {
         //Collision will be detected
         for(let enemy of allEnemies) {
           if (this.y === enemy.y && (enemy.x + enemy.stepX/2 > this.x && enemy.x < this.x + this.stepX/2)) {
-            this.restart();
+            this.reset();
           }
         }
         //Check win

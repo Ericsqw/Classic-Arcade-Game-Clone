@@ -40,14 +40,6 @@ var Engine = (function(global) {
          * computer is) - hurray time!
          */
 
-    const modal = document.querySelector('.modal-bg');
-    const replay = document.querySelector('.modal-button');
-    replay.addEventListener('click', function() {
-      modal.classList.toggle('hide');
-      player.restart();
-      player.winning = false;
-      win.requestAnimationFrame(main);
-    });
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
 
@@ -67,13 +59,24 @@ var Engine = (function(global) {
          */
         if (player.winning === true) {
           win.cancelAnimationFrame(count);
-          modal.classList.toggle('hide');
+          view();
         }
         else {
         count = win.requestAnimationFrame(main);
       }
     }
 
+    function view() {
+          const modal = document.querySelector('.modal-bg');
+          const replay = document.querySelector('.modal-button');
+          modal.classList.toggle('hide');
+          replay.addEventListener('click', function() {
+            player.reset();
+            player.winning = false;
+            modal.classList.toggle('hide');
+            win.requestAnimationFrame(main);
+          });
+    }
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -178,6 +181,9 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player.x = player.startX;
+  			player.y = player.startY;
+        render();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
